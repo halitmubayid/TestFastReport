@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="10/19/2022 14:13:49" ReportInfo.Modified="10/19/2022 14:52:20" ReportInfo.CreatorVersion="2022.3.0.0">
+  <Styles Name="Blue">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="LightSkyBlue" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="LightSkyBlue" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="AliceBlue" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionStringExpression="[CONN]">
+      <TableDataSource Name="Employee" DataType="System.Int32" Enabled="true" TableName="Employee" SelectCommand="exec ProcedureExample @Id">
+        <Column Name="Id" DataType="System.Int32"/>
+        <Column Name="SectionId" DataType="System.Int32"/>
+        <Column Name="FirstName" DataType="System.String"/>
+        <Column Name="LastName" DataType="System.String"/>
+        <Column Name="EmployeeNo" DataType="System.String"/>
+        <Column Name="WorkStatus" DataType="System.Boolean" BindableControl="CheckBox"/>
+        <Column Name="Id1" DataType="System.Int32"/>
+        <Column Name="Data" DataType="System.String"/>
+        <CommandParameter Name="Id" DataType="22" Expression="[Id]"/>
+      </TableDataSource>
+      <TableDataSource Name="Section" DataType="System.Int32" Enabled="true" TableName="Section">
+        <Column Name="Id" DataType="System.Int32"/>
+        <Column Name="Data" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="CONN" DataType="System.String"/>
+    <Parameter Name="Id" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Dock="Fill" Text="FastReport" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="42.29" Width="718.2" Height="557.55" DataSource="Employee">
+      <TextObject Name="Text18" Left="18.9" Top="113.4" Width="283.5" Height="37.8" Text="[Employee.FirstName]" Font="Arial, 18pt"/>
+      <TextObject Name="Text19" Left="330.75" Top="113.4" Width="292.95" Height="37.8" Text="[Employee.LastName]" Font="Arial, 18pt"/>
+      <BarcodeObject Name="Barcode1" Left="207.9" Top="283.5" Width="132" Height="150" Expression="[Employee.EmployeeNo]" Text="[Employee.EmployeeNo]" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+      <CheckBoxObject Name="CheckBox1" Left="670.95" Top="122.85" Width="18.9" Height="18.9" DataColumn="Employee.WorkStatus"/>
+      <TextObject Name="Text20" Left="28.35" Top="18.9" Width="245.7" Height="18.9" Text="[Section.Data]" Font="Arial, 10pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="604.34" Width="718.2" Height="18.9">
+      <TextObject Name="Text17" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="LightSkyBlue" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
